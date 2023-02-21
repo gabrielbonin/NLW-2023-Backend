@@ -38,8 +38,8 @@ model DayHabit {
   day_id   String
   habit_id String
 
-  day   Day   @relation(fields: [day_id], references: [id])
-  habit Habit @relation(fields: [habit_id], references: [id])
+  day   Day   @relation(fields: [day_id], references: [id], onDelete: Cascade)
+  habit Habit @relation(fields: [habit_id], references: [id], onDelete: Cascade)
 
   @@unique([day_id, habit_id])
   @@map("day_habits")
@@ -50,7 +50,7 @@ model HabitWeekDay {
   habit_id String
   week_day Int
 
-  habit Habit @relation(fields: [habit_id], references: [id])
+  habit Habit @relation(fields: [habit_id], references: [id], onDelete: Cascade)
 
   @@unique([habit_id, week_day])
   @@map("habit_week_days")
